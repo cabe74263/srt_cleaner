@@ -7,7 +7,7 @@ def read_files(current_directory, file_extension=".srt"):
     if "." not in file_extension:
         file_extension = "." + file_extension
 
-    for file in glob.iglob(current_directory + "/**/*" + file_extension, recursive=True):
+    for file in glob.glob(current_directory + "/**/*" + file_extension, recursive=True):
         srt_files.append(file)
     return srt_files
 
