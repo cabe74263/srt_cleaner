@@ -3,8 +3,9 @@ from pathlib import Path
 import logging
 from helpers import *
 
-logging.basicConfig(filename='error.log', filemode='w',
+logging.basicConfig(level=logging.WARNING, filename='error.log', filemode='w',
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
+logging.info("test warning level")
 
 current_directory = os.getcwd()
 # current_directory = "C:\\media\\temp"
@@ -27,4 +28,4 @@ for file in files:
                 p.rename(p.with_suffix(".original"))
                 write_file(cleaned_subs, file)
     except Exception as e:
-        logging.error(f"Ran into an issue trying to deal with '{file}'! It was \n", exec_info=True)
+        logging.error(f"Ran into an issue trying to deal with '{file}'! It was:\n", exc_info=True)
