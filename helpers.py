@@ -15,7 +15,7 @@ def read_files(current_directory, file_extension=".srt"):
 def read_file_to_list(current_file):
     read_file = []
     sub_object = []
-    with open(current_file, "r") as file_to_check:
+    with open(current_file, "r", encoding='utf-8') as file_to_check:
         new_file = file_to_check.readlines()
         last = new_file[-1]
         file_to_check.seek(0)
