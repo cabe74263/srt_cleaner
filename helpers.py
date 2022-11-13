@@ -2,9 +2,12 @@ import glob
 import re
 
 
-def read_files(current_directory):
+def read_files(current_directory, file_extension=".srt"):
     srt_files = []
-    for file in glob.iglob(current_directory + "/**/*.srt", recursive=True):
+    if "." not in file_extension:
+        file_extension = "." + file_extension
+
+    for file in glob.iglob(current_directory + "/**/*" + file_extension, recursive=True):
         srt_files.append(file)
     return srt_files
 
@@ -56,5 +59,6 @@ def write_file(file_list, file_name):
 def offending_lines():
     lines = [
         "Please rate this subtitle at",
-        "www.OpenSubtitles"]
+        "www.OpenSubtitles",
+        "Who are the real-world Illuminati"]
     return lines

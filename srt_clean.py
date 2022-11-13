@@ -1,4 +1,6 @@
 import os
+from pathlib import Path
+
 from helpers import *
 
 
@@ -14,12 +16,12 @@ print("")
 
 
 for file in files:
-    sub_list = read_file_to_list(file)
+    original_subs = read_file_to_list(file)
+    cleaned_subs = remove_ads(original_subs)
 
-    cleaned_subs = remove_ads(sub_list)
+    if not original_subs == cleaned_subs:
+        if ".srt" in file:
+            p = Path(file)
+            p.rename(p.with_suffix(".original"))
+            write_file(cleaned_subs, file)
 
-    if not sub_list == cleaned_subs:
-        index = file.find('.srt')
-        if "_FIXED" not in file:
-            new_file_name = file[:index] + "_FIXED" + file[index:]
-            write_file(cleaned_subs, new_file_name)
